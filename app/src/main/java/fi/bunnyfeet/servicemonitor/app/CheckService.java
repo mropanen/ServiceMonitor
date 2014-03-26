@@ -34,7 +34,12 @@ public class CheckService extends Service {
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("service", "onstartcommand");
-        checkUrl("http://bunnyfeet.fi");
+        if (intent.getStringExtra("url") != null) {
+            checkUrl(intent.getStringExtra("url"));
+        }
+        else {
+            checkUrl("http://bunnyfeet.fi");
+        }
 
         return START_STICKY;
     }
@@ -66,8 +71,8 @@ public class CheckService extends Service {
                 int responseCode = response.getStatusLine().getStatusCode();
 
                 Intent intent = new Intent(CHECK);
-                intent.putExtra("Url", urls[0]);
-                intent.putExtra("Status", "status: " + responseCode);
+                intent.putExtra("url", urls[0]);
+                intent.putExtra("status", "status: " + responseCode);
                 LocalBroadcastManager.getInstance(checkerContext).sendBroadcast(intent);
 
                 return responseCode;

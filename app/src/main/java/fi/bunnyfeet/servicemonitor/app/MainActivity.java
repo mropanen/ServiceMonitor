@@ -2,6 +2,7 @@ package fi.bunnyfeet.servicemonitor.app;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +23,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //FragmentManager fm = getFragmentManager();
+        try {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction tranny = fm.beginTransaction();
+            ServiceFragment sf = new ServiceFragment();
+            tranny.add(R.id.container, sf);
+            tranny.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Intent intent = new Intent(this, CheckService.class);
         startService(intent);
@@ -70,7 +80,7 @@ public class MainActivity extends Activity {
     private class CheckResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("receiver", intent.getStringExtra("Url") + ": " + intent.getStringExtra("Status"));
+            Log.d("receiver", intent.getStringExtra("url") + ": " + intent.getStringExtra("status"));
         }
     }
 
