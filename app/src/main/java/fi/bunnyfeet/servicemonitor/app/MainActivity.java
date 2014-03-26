@@ -1,6 +1,7 @@
 package fi.bunnyfeet.servicemonitor.app;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //FragmentManager fm = getFragmentManager();
 
         Intent intent = new Intent(this, CheckService.class);
         startService(intent);
@@ -56,7 +59,7 @@ public class MainActivity extends Activity {
     protected void onPause() {
         super.onPause();
         if (checkResponseReceiver != null) {
-            unregisterReceiver(checkResponseReceiver);
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(checkResponseReceiver);
         }
     }
     protected void onDestroy() {

@@ -34,6 +34,7 @@ public class CheckService extends Service {
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("service", "onstartcommand");
+        checkUrl("http://bunnyfeet.fi");
 
         return START_STICKY;
     }
