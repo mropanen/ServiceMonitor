@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +22,13 @@ public class ServiceFragment extends ListFragment {
 
     public ServiceFragment() {
         // Required empty public constructor
+    }
+
+    public List getItems() {
+        return serviceListItemList;
+    }
+    public ServiceListAdapter getAdapter() {
+        return slAdapter;
     }
 
 
@@ -48,6 +56,17 @@ public class ServiceFragment extends ListFragment {
                              Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
         //return inflater.inflate(R.layout.service_list, container, false);
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+       ServiceListItem item = (ServiceListItem)serviceListItemList.get(position);
+       Log.d("yo", item.getItemTitle() + " tapped.");
+    }
+
+    public void addItem(ServiceListItem item) {
+        serviceListItemList.add(item);
+        Log.d("added", item.getItemTitle());
     }
 
 

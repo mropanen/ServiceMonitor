@@ -14,6 +14,17 @@
         android:layout_height="wrap_content"
         android:text="@string/button_add_service"
         android:layout_alignParentTop="true"
+        android:onClick="addService"
     />
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/button_add_service"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+    </RelativeLayout>
 
 </RelativeLayout>

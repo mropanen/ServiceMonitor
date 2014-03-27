@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.content.LocalBroadcastManager;
+import android.view.View;
 
 
 public class MainActivity extends Activity {
@@ -27,8 +28,9 @@ public class MainActivity extends Activity {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction tranny = fm.beginTransaction();
             ServiceFragment sf = new ServiceFragment();
-            tranny.add(R.id.container, sf);
+            tranny.add(R.id.top, sf, "servicelist");
             tranny.commit();
+
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -36,6 +38,18 @@ public class MainActivity extends Activity {
 
         Intent intent = new Intent(this, CheckService.class);
         startService(intent);
+    }
+
+    public void addService(View view) {
+        ServiceListItem service = new ServiceListItem("Google", "http://google.com");
+        try {
+            ServiceFragment sf = (ServiceFragment)getFragmentManager().findFragmentByTag("servicelist");
+            sf.addItem(service);
+            sf.getAdapter().notifyDataSetChanged();
+            Log.d("yo", sf.getItems().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

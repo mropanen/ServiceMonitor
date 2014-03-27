@@ -47,7 +47,7 @@ public class ServiceListAdapter extends ArrayAdapter {
         }
 
         holder.name.setText(item.getItemTitle());
-        holder.status.setText(item.getItemUrl());
+        //holder.status.setText(item.getItemUrl());
 
         Intent intent = new Intent(context, CheckService.class);
         intent.putExtra("url", item.getItemUrl());

@@ -6,7 +6,7 @@ package fi.bunnyfeet.servicemonitor.app;
 public class ServiceListItem {
 
     private String itemTitle;
-private String itemUrl;
+    private String itemUrl;
 
     public String getItemTitle() {
         return itemTitle;
@@ -30,6 +30,6 @@ private String itemUrl;
 
     @Override
     public String toString() {
-        return "yo.";
+        return itemTitle;
     }
 }
